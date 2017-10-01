@@ -9,7 +9,7 @@ h1 {
 h2 {
     margin-left: 0.5em;
 }
-#quote {
+.quote {
     margin-left: 3.3em;
     padding-left: 7px;
     background-color: #F5F5F5;
@@ -21,6 +21,7 @@ h2 {
     font-size: 0.8em;
     background-color: #ec0b43;
     color: white;
+    border-radius: 3px;
     padding: 5px;
     float: left;
 }
@@ -31,6 +32,8 @@ h2 {
     border-style: solid;
     border-width: 2px;
     border-color: #ec0b43;
+    border-radius: 2px;
     padding: 3px;
     float: left;
+    cursor: pointer;
 }
