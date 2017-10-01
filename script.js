@@ -1,14 +1,15 @@
 var QuoteBase;
 var UsedQuotes = new Array(5);
 
-function showQuote(value, index, ar) {
-    br = document.createElement("br");
-    br.className = "quote";
-    document.body.appendChild(br);
+function showQuote(value, index, ar)
+{
+    var block = document.getElementById('randomQuotesBlock');
+    var br = document.createElement("br");
     var quote = document.createElement('div');
     quote.className = "quote";
     quote.innerHTML = "\"" + QuoteBase[value].quoteText + "\" - " + QuoteBase[value].quoteAuthor;
-    document.body.appendChild(quote);
+    block.appendChild(quote);
+    block.appendChild(br);
 }
 
 function getRandom(max)
@@ -22,7 +23,17 @@ function randomizeQuotes()
     {
         UsedQuotes[i] = getRandom(QuoteBase.length);
     }
+    clearRandomQuotes();
     UsedQuotes.forEach(showQuote);
+}
+
+function clearRandomQuotes()
+{
+    var block = document.getElementById('randomQuotesBlock');
+
+    while (block.firstChild) {
+        block.removeChild(block.firstChild);
+    }
 }
 
 function showQuoteOfTheDay()
@@ -48,20 +59,17 @@ function sortQuotes()
         for (var j = i + 1; j < UsedQuotes.length; j++)
         {
             if (QuoteBase[UsedQuotes[i]].quoteText > QuoteBase[UsedQuotes[j]].quoteText)
-                {
-                    var tmp = UsedQuotes[j];
-                    UsedQuotes[j] = UsedQuotes[i];
-                    UsedQuotes[i] = tmp;
-                }
+            {
+                var tmp = UsedQuotes[j];
+                UsedQuotes[j] = UsedQuotes[i];
+                UsedQuotes[i] = tmp;
+            }
         }
     }
     var elements = document.getElementsByClassName('quote');
     var mainQuote = document.getElementById('quoteOfTheDay');
-    for(var i = 0; i < elements.length; i++) {
-        if (elements[i] != mainQuote)
-            elements[i].parentNode.removeChild(elements[i]);
-    }
-    //UsedQuotes.forEach(showQuote);
+    clearRandomQuotes();
+    UsedQuotes.forEach(showQuote);
 }
 
 
