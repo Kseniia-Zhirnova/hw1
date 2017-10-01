@@ -39,7 +39,7 @@ function clearRandomQuotes()
 function showQuoteOfTheDay()
 {
     var quote = document.getElementById('quoteOfTheDay');
-    var index = getRandom(QuoteBase.length);
+    var index = getRandom(QuoteBase.length - 1);
     quote.innerHTML = "\"" + QuoteBase[index].quoteText + "\" - " + QuoteBase[index].quoteAuthor;
 }
 
@@ -47,7 +47,7 @@ function loadQuotes()
 {
     var request = new XMLHttpRequest();
     request.open("GET", "https://raw.githubusercontent.com/4skinSkywalker/Database-Quotes-JSON/master/quotes.json", false);
-    request.send(null)
+    request.send(null);
     QuoteBase = JSON.parse(request.responseText);
     randomizeQuotes();
 }
@@ -66,8 +66,6 @@ function sortQuotes()
             }
         }
     }
-    var elements = document.getElementsByClassName('quote');
-    var mainQuote = document.getElementById('quoteOfTheDay');
     clearRandomQuotes();
     UsedQuotes.forEach(showQuote);
 }
